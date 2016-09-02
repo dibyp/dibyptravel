@@ -1,12 +1,5 @@
 var express = require('express');
-
-
-var fortunes = [
-	"Lucky!!!",
-	"Un Lucky!!!",
-	"More or less...",
-	"Bad luck...",
-];
+var fortune = require('./lib/fortune.js');
 
 
 var app = express();
@@ -24,8 +17,7 @@ app.get('/', function(req, res) {
 	res.render('home');
 });
 app.get('/about', function(req, res) {
-	var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-	res.render('about', { fortune: randomFortune });
+	res.render('about', { fortune: fortune.getFortune() });
 });
 
 // 커스텀 404 페이지
