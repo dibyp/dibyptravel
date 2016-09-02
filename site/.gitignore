@@ -1,0 +1,8 @@
+# npm에서 설치한 패키지를 무시합니다.
+node_modules/
+
+# 그 밖에, .DS_Store나 *.bak 등 필요 없은 파일은
+# 무엇이든 추가하십시오.
+*.js.swp
+.DS_store
+*~
