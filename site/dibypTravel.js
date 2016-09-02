@@ -13,12 +13,27 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
+app.use(function(req, res, next) {
+	res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
+	next();
+});
+
 app.get('/', function(req, res) {
 	res.render('home');
 });
 app.get('/about', function(req, res) {
-	res.render('about', { fortune: fortune.getFortune() });
+	res.render('about', { 
+		fortune: fortune.getFortune(), 
+		pageTestScript: '/qa/tests-about.js' 
+	});
 });
+app.get('/tours/tongyoung', function() {
+	res.render('tours/tongyoung');
+});
+app.get('/tours/request-group-rate', function(req, res) {
+	res.render('tours/request-group-rate');
+});
+
 
 // 커스텀 404 페이지
 app.use(function(req, res) {
